@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component]: Input should match snapshot 1`] = `
+<div>
+  <label
+    for="test-input"
+    style="display: none;"
+  >
+    Breed
+  </label>
+  <input
+    autocomplete="off"
+    class="sc-AxjAm fXbnfk"
+    id="test-input"
+    placeholder="Search"
+    type="text"
+    value=""
+  />
+</div>
+`;

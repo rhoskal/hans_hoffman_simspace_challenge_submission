@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
 
-const App = () => {
+import { BreedList, Gallery } from "./components";
+import { Input } from "./ui";
+
+const StyledRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+`;
+
+export default function App() {
+  const [selected_breed, setSelectedBreed] = React.useState<string>("");
+  const [searched_breed, setSearchedBreed] = React.useState<string>("");
+
+  function handleBreedSelect(breed: string) {
+    setSelectedBreed(breed);
+  }
+
+  // eslint-disable-next-line no-undef
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchedBreed(event.target.value);
+  }
+
+  function handleSubmit(event: any) {
+    event.preventDefault();
+    console.log("fix me");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section>
+      <StyledRow>
+        <h1>Dogs!</h1>
+        <form onSubmit={handleSubmit}>
+          <Input name="breed" onChange={handleChange} value={searched_breed} />
+        </form>
+      </StyledRow>
+      <BreedList
+        onSelect={handleBreedSelect}
+        searched_breed={searched_breed}
+        selected_breed={selected_breed}
+      />
+      <Gallery breed={selected_breed} />
+    </section>
   );
 }
-
-export default App;
