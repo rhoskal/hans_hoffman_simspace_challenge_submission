@@ -49,7 +49,7 @@ export function Gallery({ breed = "" }: Props) {
     if (breed !== "") {
       fetchBreedImages();
     }
-  }, [breed]);
+  }, [breed, didError]);
 
   if (isLoading) return <Loading />;
   if (didError) return <Error />;

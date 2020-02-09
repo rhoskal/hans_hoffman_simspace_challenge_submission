@@ -16,7 +16,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["import", "jest", "prettier", "react"],
+  "plugins": ["import", "jest", "prettier", "react", "react-hooks"],
   "rules": {
     "import/newline-after-import": 2,
     "import/no-cycle": 2,
@@ -34,7 +34,9 @@
     ],
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "react": {
