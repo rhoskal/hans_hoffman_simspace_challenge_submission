@@ -18,7 +18,8 @@ const MasonryGrid = styled.div`
   margin-top: 50px;
 `;
 
-const Image = styled.img`
+const Image = styled.img<{ isActive: Boolean }>`
+  border: ${props => (props.isActive ? "2px solid red" : null)};
   object-fit: contain;
   max-width: 100%;
 `;
@@ -27,6 +28,7 @@ export function Gallery({ breed = "" }: Props) {
   const [didError, setDidError] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [images, setImages] = React.useState<string[]>([]);
+  const [saved, setSaved] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     async function fetchBreedImages() {
@@ -51,13 +53,22 @@ export function Gallery({ breed = "" }: Props) {
     }
   }, [breed, didError]);
 
+  const handleOnClick = (url: string) => {
+    setSaved([...saved, url]);
+  };
+
   if (isLoading) return <Loading />;
   if (didError) return <Error />;
 
   return (
     <MasonryGrid>
       {images.map(img => (
-        <Image key={img} src={img} />
+        <Image
+          isActive={saved.includes(img)}
+          key={img}
+          onClick={() => handleOnClick(img)}
+          src={img}
+        />
       ))}
     </MasonryGrid>
   );
